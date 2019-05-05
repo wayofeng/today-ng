@@ -6,21 +6,22 @@ const ls = localStorage;
   providedIn: 'root'
 })
 export class LocalStorageService {
-
-  constructor() { }
+  constructor() {}
 
   public get<T>(key: string): any {
-    JSON.parse(ls.getItem(key)) as T
+    return JSON.parse(ls.getItem(key)) as T;
   }
 
   public getList<T>(key: string) {
-    const before = ls.getItem(key)
-    return before ? (JSON.parse(before) as T[]) : []
+    const before = ls.getItem(key);
+    return before ? (JSON.parse(before) as T[]) : [];
   }
 
   public set(key: string, value: any): void {
-    if(!value && value === undefined) {return;}
-    const arr = JSON.stringify(value)
-    ls.setItem(key, arr)
+    if (!value && value === undefined) {
+      return;
+    }
+    const arr = JSON.stringify(value);
+    ls.setItem(key, arr);
   }
 }
